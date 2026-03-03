@@ -364,10 +364,10 @@ ul {
 }
 
 .hero__text {
-    font-size: 1.05rem;
+    font-size: 1.35rem;
     color: var(--text-secondary);
     margin-bottom: 16px;
-    line-height: 1.8;
+    line-height: 2;
 }
 
 .hero__text strong {
@@ -923,12 +923,68 @@ ul {
     background: var(--bg-primary);
 }
 
-.press__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
+/* Carousel wrapper */
+.carousel {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.carousel__track {
+    display: flex;
+    gap: 32px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 16px 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--neon-purple) transparent;
+    flex: 1;
+}
+
+.carousel__track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel__track::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.carousel__track::-webkit-scrollbar-thumb {
+    background: var(--neon-purple);
+    border-radius: 3px;
+}
+
+.carousel__track .press__card {
+    min-width: 420px;
+    max-width: 480px;
+    flex: 0 0 auto;
+    scroll-snap-align: center;
+}
+
+.carousel__btn {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(191, 0, 255, 0.25);
+    background: rgba(22, 22, 31, 0.9);
+    color: var(--neon-purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    z-index: 2;
+}
+
+.carousel__btn:hover {
+    border-color: var(--neon-purple);
+    background: rgba(191, 0, 255, 0.1);
+    box-shadow: 0 0 20px rgba(191, 0, 255, 0.25);
+    transform: scale(1.1);
 }
 
 .press__card {
@@ -1046,6 +1102,256 @@ ul {
     background: rgba(0, 229, 255, 0.05);
     box-shadow: 0 0 15px rgba(0, 229, 255, 0.15);
     transform: translateY(-3px);
+}
+
+/* ===== ABOUT BLOCKS (Quiénes Somos subsections) ===== */
+.about-block {
+    margin-top: 80px;
+    position: relative;
+}
+
+.about-block__title {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+}
+
+.about-block__intro {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.about-block__intro strong {
+    color: var(--neon-cyan);
+    font-weight: 600;
+}
+
+/* Value Proposition Cards */
+.value-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.value-card {
+    background: rgba(22, 22, 31, 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    border-radius: 16px;
+    padding: 36px 28px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.04), rgba(0, 229, 255, 0.03), rgba(191, 0, 255, 0.04));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.value-card:hover {
+    border-color: rgba(57, 255, 20, 0.35);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(57, 255, 20, 0.1);
+}
+
+.value-card:hover::before {
+    opacity: 1;
+}
+
+.value-card__icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(57, 255, 20, 0.08);
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    color: var(--neon-green);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.value-card:hover .value-card__icon {
+    background: rgba(57, 255, 20, 0.15);
+    box-shadow: 0 0 25px rgba(57, 255, 20, 0.25);
+    transform: scale(1.1);
+}
+
+.value-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.value-card__desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+}
+
+.value-card__desc strong {
+    color: var(--neon-cyan);
+    font-weight: 600;
+}
+
+/* Roles / Team Grid */
+.roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.role-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(191, 0, 255, 0.1);
+    border-radius: 16px;
+    padding: 36px 24px 28px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.role-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(191, 0, 255, 0.04), rgba(123, 45, 255, 0.03));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.role-card:hover {
+    border-color: rgba(191, 0, 255, 0.35);
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 30px rgba(191, 0, 255, 0.12);
+}
+
+.role-card:hover::before {
+    opacity: 1;
+}
+
+.role-card__icon-wrap {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(191, 0, 255, 0.08);
+    border: 1px solid rgba(191, 0, 255, 0.2);
+    color: var(--neon-purple);
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.role-card:hover .role-card__icon-wrap {
+    background: rgba(191, 0, 255, 0.15);
+    box-shadow: 0 0 25px rgba(191, 0, 255, 0.25);
+    transform: scale(1.1);
+}
+
+.role-card__title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+}
+
+.role-card__name {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--neon-cyan);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding: 3px 14px;
+    border: 1px solid rgba(0, 229, 255, 0.2);
+    border-radius: 20px;
+    background: rgba(0, 229, 255, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.role-card__desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+/* Closing Statement */
+.about-closing {
+    margin-top: 60px;
+    text-align: center;
+    padding: 40px 24px;
+    background: rgba(22, 22, 31, 0.6);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-closing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(57, 255, 20, 0.02), rgba(0, 229, 255, 0.02), rgba(191, 0, 255, 0.02));
+}
+
+.about-closing__text {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.about-closing__text strong {
+    color: var(--neon-green);
+    font-weight: 700;
 }
 
 /* ===== SCROLL ANIMATIONS ===== */
@@ -1189,9 +1495,17 @@ ul {
         grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     }
 
-    .press__grid {
-        grid-template-columns: 1fr;
-        max-width: 540px;
+    .carousel__track .press__card {
+        min-width: 340px;
+    }
+
+    .value-grid,
+    .roles-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .about-block {
+        margin-top: 60px;
     }
 }
 
@@ -1272,54 +1586,36 @@ ul {
         grid-template-columns: 1fr;
     }
 
-    /* Timeline mobile — vertical single column */
-    .timeline {
-        flex-direction: column;
-        gap: 24px;
-        padding: 20px 0 20px 40px;
-        overflow-x: visible;
-    }
-
-    .timeline::before {
-        top: 0;
-        bottom: 0;
-        left: 20px;
-        right: auto;
-        width: 3px;
-        height: auto;
-        background: linear-gradient(to bottom, var(--neon-green), var(--neon-cyan), var(--neon-purple));
-    }
-
-    .timeline__item {
-        min-width: unset;
-        max-width: 100%;
-        flex: none;
-        padding-top: 0;
-        text-align: left;
-        padding-left: 24px;
-    }
-
-    .timeline__dot {
-        top: 8px;
-        left: -29px;
-        transform: none;
-    }
-
-    .timeline__item:hover .timeline__dot {
-        transform: scale(1.3);
-    }
-
-    .timeline__content {
-        margin-top: 0;
-        padding: 22px;
-    }
-
-    .timeline__content::before {
+    .carousel__btn {
         display: none;
     }
 
-    .press__grid {
+    .carousel__track .press__card {
+        min-width: 280px;
+    }
+
+    .value-grid,
+    .roles-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-block {
+        margin-top: 48px;
+    }
+
+    .about-block__title {
+        font-size: 1.1rem;
+    }
+
+    .about-block__intro {
+        font-size: 0.95rem;
+        margin-bottom: 28px;
+    }
+
+    .about-closing {
+        margin-top: 40px;
+        padding: 28px 16px;
     }
 }
 
